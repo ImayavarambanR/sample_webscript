@@ -1,0 +1,16 @@
+local response = http.request {
+	url = 'http://cricapi.com/api/cricket/'
+}
+x = json.parse(response.content)
+out=" "
+for i,j in ipairs(x)
+do
+	le=x[i]["title"]
+	local response=http.request{
+		url='https://slack.com/api/chat.postMessage?token=xoxp-54333529382-54333529398-54337601376-45eaf7d8e6&channel=C1L8LHVC3&text='..le..'&pretty=1'
+	}
+	out = out..response.content
+end
+return x
+--return "<h1>out</h1>",{["Content-Type"]="text/html"}
+
